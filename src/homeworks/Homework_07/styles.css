@@ -1,0 +1,19 @@
+.wrapper{
+   background-color: rgb(4, 4, 160);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   color: white;
+   flex: 1;
+   padding: 40px;
+   gap: 10px;
+}
+.input_wrapper{
+   width: 100%;
+   max-width: 600px;
+   margin: 20px;
+}
+.btn_wrapper{
+   max-width: 600px;
+}

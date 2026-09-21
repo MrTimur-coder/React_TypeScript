@@ -1,17 +1,16 @@
-import { useState } from "react";
+// 1. Import Libraries, Types, Functions, Components
+import { useState, type ReactNode } from "react";
 import "./styles.css";
 import Button from "components/Button/Button";
 import { v4 } from "uuid";
+import { type Cars } from "./types";
 
 function Lesson_07_Practice() {
-  interface Cars {
-    pic: string;
-    brand: string;
-    price: number;
-    isDiesel: boolean;
-  }
+  // Turn any type to array
   type ArrayGenerator<type> = type[];
-  const cars: ArrayGenerator<Cars> = [
+
+  // Initial cars array
+  const initialCars: ArrayGenerator<Cars> = [
     {
       pic: "https://images.wallpapersden.com/image/download/bmw-f80-m3_Zm1pZ22UmZqaraWkpJRqZWWtamVl.jpg",
       brand: "BMW",
@@ -50,7 +49,11 @@ function Lesson_07_Practice() {
     },
   ];
 
-  const newCars = cars.map((value) => {
+  // Cars state
+  const [cars] = useState<ArrayGenerator<Cars>>(initialCars);
+
+  // Convert cars -> JSX cards
+  const carCards = (value: Cars) => {
     return (
       <div key={v4()} className={`cars_card ${value.brand}`} id={value.brand}>
         <img className="car_img" src={value.pic} alt={value.brand} />
@@ -59,20 +62,60 @@ function Lesson_07_Practice() {
         <p className="isDiesel">With Diesel? {value.isDiesel ? "Yes" : "No"}</p>
       </div>
     );
-  });
-  const [car, setCar] = useState(newCars);
+  };
 
-  const carsBtn = newCars.map((value) => {
+  const allCards = cars.map(carCards);
+
+  // Show all cards at the beginning
+  const [displayCar, setDisplayCar] = useState<ReactNode[]>(allCards);
+
+  // Buttons for each brand
+  const carsBtn = cars.map((value) => {
     return (
       <Button
         key={v4()}
-        button_info={value.props.id}
+        button_info={value.brand}
         onClick={() => {
-          setCar(value);
+          const filter = allCards.filter(
+            (card) => card.props.id === value.brand,
+          );
+          setDisplayCar(filter);
         }}
       />
     );
   });
+
+  // Show filtered cars by price
+  const handleSelect = (value: string): void => {
+    if (value === "all") {
+      setDisplayCar(allCards);
+      return;
+    }
+    if (value === "priceHigh") {
+      const sortedCarsDesc = [...cars]
+        .sort((a, b) => b.price - a.price)
+        .map(carCards);
+      setDisplayCar(sortedCarsDesc);
+      return;
+    }
+    if (value === "priceLow") {
+      const sortedCarsAsc = [...cars]
+        .sort((a, b) => a.price - b.price)
+        .map(carCards);
+      setDisplayCar(sortedCarsAsc);
+      return;
+    }
+    if (value === "diesel") {
+      const filteredCars = [...cars].filter((c) => c.isDiesel).map(carCards);
+      setDisplayCar(filteredCars);
+      return;
+    }
+    if (value === "nonDiesel") {
+      const filteredCars = [...cars].filter((c) => !c.isDiesel).map(carCards);
+      setDisplayCar(filteredCars);
+      return;
+    }
+  };
 
   return (
     <div className="homework_05_wrapper">
@@ -82,13 +125,30 @@ function Lesson_07_Practice() {
           <Button
             button_info={"All"}
             onClick={() => {
-              setCar(newCars);
+              setDisplayCar(allCards);
             }}
           />
           {carsBtn}
         </div>
+        <div className="sortPrice">
+          <select
+            name="sortPrice"
+            id="sortPrice"
+            onChange={(e) => {
+              handleSelect(e.target.value);
+            }}
+          >
+            <option value="all" selected>
+              All
+            </option>
+            <option value="priceHigh">Price: High -{">"} Low</option>
+            <option value="priceLow">Price: Low -{">"} High</option>
+            <option value="diesel">Diesel only</option>
+            <option value="nonDiesel">Non Diesel only</option>
+          </select>
+        </div>
       </div>
-      <div className="card_wrapper">{car}</div>
+      <div className="card_wrapper">{displayCar}</div>
     </div>
   );
 }

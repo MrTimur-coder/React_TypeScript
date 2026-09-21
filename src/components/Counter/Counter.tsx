@@ -1,19 +1,19 @@
 import Button from "components/Button/Button";
-import "./styles.css";
 
 import {type CounterProps} from './types'
+import { ButtonControl, Count, CounterWrapper } from "./styles";
 
 function Counter({count, onPlus, onMinus}: CounterProps) {
   return (
-    <div className="counter_wrapper">
-      <div className="button_control">
+    <CounterWrapper className="counter_wrapper">
+      <ButtonControl className="button_control">
         <Button button_info="-" onClick={onMinus} />
-      </div>
-      <p className="count">{count}</p>
-      <div className="button_control">
+      </ButtonControl>
+      <Count className="count">{count}</Count>
+      <ButtonControl className="button_control">
         <Button button_info="+" onClick={onPlus} />
-      </div>
-    </div>
+      </ButtonControl>
+    </CounterWrapper>
   );
 }
 
