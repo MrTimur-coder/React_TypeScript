@@ -1,41 +1,23 @@
-import { useState } from "react";
-
 import Button from "components/Button/Button";
-import "./styles.css";
+import type { FeedbackProps } from "./types";
+import { ButtonWrapper, Dislike, FeedbackTitle, FeedbackWrapper, Like, ResetButton, Status } from "./styles";
 
-function Feedback() {
-  const [ like, setLike ] = useState<number>(0);
-  const [ dislike, setDislike ] = useState<number>(0);
-  const onLike = ():void => {
-    setLike((preValue: number): number => {
-      return preValue + 1;
-    });
-  };
-  const onDislike = ():void => {
-    setDislike((preValue: number): number => {
-      return preValue + 1;
-    });
-  };
-  const onReset=():void=>{
-   setLike(0);
-   setDislike(0);
-  }
-
+function Feedback({like, dislike, onLike, onDislike, onReset}: FeedbackProps){
   return (
-    <div className="feedback_wrapper">
-      <h1 className="feedback_title">Feedback</h1>
-      <div className="like">
-        <div className="likeBtn"><Button button_info={"Like"} onClick={onLike}/></div>
-        <div className="status">{like}</div>
-      </div>
-      <div className="dislike">
-        <div className="dislikeBtn"><Button button_info={"Dislike"} onClick={onDislike} /></div>
-        <div className="status">{dislike}</div>
-      </div>
-      <div className="reset_btn">
+    <FeedbackWrapper>
+      <FeedbackTitle>Feedback</FeedbackTitle>
+      <Like>
+        <ButtonWrapper><Button button_info={"Like"} onClick={onLike}/></ButtonWrapper>
+        <Status>{like}</Status>
+      </Like>
+      <Dislike>
+        <ButtonWrapper><Button button_info={"Dislike"} onClick={onDislike} /></ButtonWrapper>
+        <Status className="status">{dislike}</Status>
+      </Dislike>
+      <ResetButton>
         <Button button_info={"Reset"} onClick={onReset}/>
-      </div>
-    </div>
+      </ResetButton>
+    </FeedbackWrapper>
   );
 }
 
