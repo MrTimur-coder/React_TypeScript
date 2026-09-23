@@ -10,6 +10,7 @@ import Lesson_07_Practice from "lessons/Lesson_07_Practice/Lesson_07_Practice";
 import Lesson_08 from "lessons/Lesson_08/Lesson_08";
 import Lesson_09 from "lessons/Lesson_09/Lesson_09";
 import CatFact from "components/CatFact/CatFact";
+import Homework_09 from "homeworks/Homework_09/Homework_09";
 
 function App() {
   return (
@@ -17,13 +18,14 @@ function App() {
     <GlobalStyles/>
       {/* Homeworks */}
       {/* <Homework_07 /> */}
+      <Homework_09/>
 
       {/* Lessons */}
       {/* <Lesson_06 /> */}
       {/* <Lesson_07/> */}
       {/* <Lesson_07_Practice/> */}
       {/* <Lesson_08/> */}
-      <Lesson_09/>
+      {/* <Lesson_09/> */}
     </>
   );
 }
