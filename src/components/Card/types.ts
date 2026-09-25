@@ -1,8 +1,8 @@
 export interface CardProps {
   firstName: string;
-  lastName: string;
+  lastName?: string;
   job: string;
-  hobby: string;
-  avatar: string;
+  hobby?: string;
+  avatar?: string;
   setBgColor?: string | boolean;
 }

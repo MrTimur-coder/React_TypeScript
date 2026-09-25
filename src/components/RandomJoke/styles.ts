@@ -5,6 +5,7 @@ export const RandomJokeWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  gap: 40px;
   border: 2px solid black;
   border-radius: 20px;
   background-color: #fff;
@@ -12,17 +13,36 @@ export const RandomJokeWrapper = styled.div`
   min-height: 400px;
   padding: 40px;
 `;
+export const JokeOL = styled.ol`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+`;
 
-export const Joke = styled.p`
-line-height: 1.6;
-   font-size: 25px;
-   font-weight: 600;
-`
+export const JokeListContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
+
+export const Joke = styled.li`
+  line-height: 1.6;
+  font-size: 25px;
+  font-weight: 600;
+`;
+
+export const DeleteButton = styled.div`
+  min-width: 100px;
+`;
+
 export const Error = styled.p`
-   font-size: 30px;
-   color: red;
-`
+  font-size: 30px;
+  color: red;
+`;
 
 export const Loading = styled.img`
-width: 40px;
-`
+  width: 40px;
+`;

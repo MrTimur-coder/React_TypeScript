@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import Button from "components/Button/Button";
 import { PageWrapper } from "./styles";
 import RandomJoke from "components/RandomJoke/RandomJoke";
 
