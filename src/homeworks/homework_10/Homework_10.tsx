@@ -3,7 +3,7 @@ import { PageWrapper } from "./styles";
 
 function Homework_10(){
    return <PageWrapper>
-      <ContactUs/>
+      <ContactUs />
    </PageWrapper>
 }
 

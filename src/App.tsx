@@ -21,7 +21,7 @@ function App() {
       {/* Homeworks */}
       {/* <Homework_07 /> */}
       {/* <Homework_09/> */}
-      {/* <Homework_10/> */}
+      <Homework_10/>
 
       {/* Lessons */}
       {/* <Lesson_06 /> */}
@@ -30,7 +30,7 @@ function App() {
       {/* <Lesson_08/> */}
       {/* <Lesson_09/> */}
       {/* <Lesson_10/> */}
-      <Lesson_11/>
+      {/* <Lesson_11/> */}
     </>
   );
 }
