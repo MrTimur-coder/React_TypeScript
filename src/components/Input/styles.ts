@@ -41,5 +41,8 @@ const ErrorText = styled.div`
   font-size: 16px;
   color: #ff6868ff;
 `;
+export const RequiredAsterisk = styled.span`
+  color: red;
+`;
 
 export { InputWrapper, Label, InputStyling, ErrorText};
