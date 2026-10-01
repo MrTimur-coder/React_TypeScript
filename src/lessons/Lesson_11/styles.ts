@@ -1,3 +1,4 @@
+import { Error } from "./../../components/RandomJoke/styles";
 import styled from "@emotion/styled";
 
 export const PageWrapper = styled.div`
@@ -19,7 +20,7 @@ export const PageWrapperForm = styled.form`
 `;
 
 export const ButtonControl = styled.div`
-  min-width: 150px;
+  min-width: 200px;
   margin-top: 37.5px;
 `;
 
@@ -46,4 +47,11 @@ export const Card = styled.div`
   padding: 30px;
   color: black;
   gap: 30px;
+`;
+
+export const ErrorText = styled.p`
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
