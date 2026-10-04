@@ -15,13 +15,26 @@ import {
   getActiveStyles,
 } from "./styles";
 import type { LayoutProps } from "./types";
+import { NAVIGATION_MENU_ROUTES, ROUTES } from "components/constants/routes";
 
 function Layout({children}: LayoutProps) {
   const navigate = useNavigate();
 
   const goToHomePage = () => {
-    navigate("/")
+    navigate(ROUTES.HOME)
   }
+
+  const routeKeys = Object.keys(NAVIGATION_MENU_ROUTES);
+  const routeValues = Object.values(NAVIGATION_MENU_ROUTES);
+
+  const headerLink = routeValues.map((value, index) => {
+    return <HeaderLink style={getActiveStyles} to={value} key={index}>{routeKeys[index]}</HeaderLink>
+  })
+
+  const footerLink = routeValues.map((value, index) => {
+    return <FooterLink to={value} key={index}>{routeKeys[index]}</FooterLink>
+  })
+
   return (
     <LayoutWrapper>
       <Header>
@@ -32,11 +45,12 @@ function Layout({children}: LayoutProps) {
           />
         </Logo>
         <NavigationContainer>
-          <HeaderLink style={getActiveStyles} to="/">Home</HeaderLink>
+          {headerLink}
+          {/* <HeaderLink style={getActiveStyles} to="/">Home</HeaderLink>
           <HeaderLink style={getActiveStyles} to="/clients">Clients</HeaderLink>
           <HeaderLink style={getActiveStyles} to="/contactUs">Contact Us</HeaderLink>
           <HeaderLink style={getActiveStyles} to="/about">About</HeaderLink>
-          <HeaderLink style={getActiveStyles} to="/login">Login</HeaderLink>
+          <HeaderLink style={getActiveStyles} to="/login">Login</HeaderLink> */}
         </NavigationContainer>
       </Header>
       <Main>{children}</Main>
@@ -48,11 +62,12 @@ function Layout({children}: LayoutProps) {
           />
         </FooterLogo>
         <FooterNavigation>
-          <FooterLink to="/">Home</FooterLink>
+          {footerLink}
+          {/* <FooterLink to="/">Home</FooterLink>
           <FooterLink to="/clients">Clients</FooterLink>
           <FooterLink to="/contactUs">Contact Us</FooterLink>
           <FooterLink to="/about">About</FooterLink>
-          <FooterLink to="/login">Login</FooterLink>
+          <FooterLink to="/login">Login</FooterLink> */}
         </FooterNavigation>
       </Footer>
     </LayoutWrapper>

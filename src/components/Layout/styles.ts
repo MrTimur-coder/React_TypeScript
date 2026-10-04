@@ -77,6 +77,7 @@ export const FooterLink = styled(Link)`
   color: white;
   font-size: 14px;
   font-weight: bold;
+  text-decoration: none;
 `;
 
 export const getActiveStyles = ({ isActive }: NavLinkRenderProps) => ({

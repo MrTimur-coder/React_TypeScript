@@ -30,12 +30,6 @@ export const CompanyLinks = styled(NavLink)`
   border-radius: 10px;
 `;
 
-export const CompanyAmazon = styled.img`
-  width: 100%;
-`;
-export const CompanySpotify = styled.img`
-  width: 90%;
-`;
-export const CompanyNetflix = styled.img`
+export const CompanyLogo = styled.img`
   width: 100%;
 `;
