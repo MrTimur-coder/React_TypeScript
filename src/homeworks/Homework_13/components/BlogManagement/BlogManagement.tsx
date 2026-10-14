@@ -7,14 +7,15 @@ import {
   BlogTextArea,
 } from "./styles";
 import Cards from "../Cards/Cards";
-import { createContext, useState } from "react";
+import { createContext, useState,} from "react";
 import type { BlogContextTypes } from "./types";
 import { useFormik } from "formik";
 
 // Create context
 export const BlogContext = createContext<BlogContextTypes>({
-  message: undefined,
-});
+  message: [],
+  setMessage: () => {}
+})
 
 function BlogManagement() {
   // // Create state
@@ -47,7 +48,7 @@ function BlogManagement() {
 
   return (
     // <BlogContext.Provider value={{ message: blogMessage }}>
-    <BlogContext.Provider value={{ message: blogMessage }}>
+    <BlogContext.Provider value={{ message: blogMessage, setMessage: setBlogMessage }}>
       <BlogManagementWrapper>
         {/* <BlogForm onSubmit={postMessage}> */}
         <BlogForm onSubmit={formik.handleSubmit}>

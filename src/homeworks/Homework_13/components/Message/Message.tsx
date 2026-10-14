@@ -9,14 +9,14 @@ import { BlogContext } from "../BlogManagement/BlogManagement";
 import { v4 } from "uuid";
 
 function Message() {
-  const { message } = useContext(BlogContext);
+  const { message, setMessage } = useContext(BlogContext);
 
   console.log(message);
   const messageList = Array.isArray(message)
-    ? message.map((value: any, index: number) => {
+    ? message.map((value: any) => {
         return (
           <MessageList key={v4()}>
-            {index + 1}. {value}
+            {value}
           </MessageList>
         );
       })
