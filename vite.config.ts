@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/React_TypeScript', 
   plugins: [react()],
   resolve: {
     alias: {

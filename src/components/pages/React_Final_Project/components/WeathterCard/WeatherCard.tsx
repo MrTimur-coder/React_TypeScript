@@ -102,14 +102,14 @@ function WeatherCard({ weather, isSaved = false }: WeatherCardProps) {
       <CardActions>
         {!isSaved && (
           <Button
-            name="Save"
+            button_info="Save"
             onClick={saveWeather}
           />
         )}
 
         {isSaved && (
           <Button
-            name={isUpdating ? "Updating..." : "Update"}
+            button_info={isUpdating ? "Updating..." : "Update"}
             disabled={isUpdateDisabled}
             onClick={() => {
               updateWeather(weather.uid);
@@ -118,7 +118,7 @@ function WeatherCard({ weather, isSaved = false }: WeatherCardProps) {
         )}
 
         <Button
-          name="Delete"
+          button_info="Delete"
           disabled={isUpdating}
           onClick={
             isSaved
