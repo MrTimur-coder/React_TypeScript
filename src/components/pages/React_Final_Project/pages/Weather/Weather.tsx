@@ -16,7 +16,7 @@ function Weather() {
       ))}
       {savedWeather.length > 0 && (
         <DeleteAllButton>
-          <Button name="Delete all cards" onClick={deleteAllWeather} />
+          <Button button_info="Delete all cards" onClick={deleteAllWeather} />
         </DeleteAllButton>
       )}
     </PageWrapper>

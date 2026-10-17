@@ -44,7 +44,7 @@ function Home() {
           />
         </CityInput>
 				<SearchButton>
-					<Button name="Search" type="submit" disabled={isLoading} />
+					<Button button_info="Search" type="submit" disabled={isLoading} />
 				</SearchButton>
       </SearchForm>
 			{currentWeather && <WeatherCard weather={currentWeather} />}
@@ -53,7 +53,7 @@ function Home() {
 					<ErrorTitle>API Error</ErrorTitle>
 					<ErrorText>{error.cod}: {error.message}</ErrorText>
 					<CardActions>
-						<Button name="Delete" onClick={deleteCurrentCard} />
+						<Button button_info="Delete" onClick={deleteCurrentCard} />
 					</CardActions>
 				</CardWrapper>
 			)}
