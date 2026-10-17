@@ -5,9 +5,13 @@ export const PageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  gap: 80px;
+  gap: 60px;
   padding-top: 90px;
   background: url("/images/rain.jpg") center / cover no-repeat;
+  
+  @media (max-width: 500px) {
+    padding-top: 50px;
+  }
 `;
 
 export const SearchRow = styled.div`
@@ -50,33 +54,51 @@ export const SearchRow = styled.div`
     border-radius: 999px;
     font-size: 14px;
   }
+
+  @media (max-width: 500px ) {
+  margin-top: 80px;
+    width: 90%;
+  }
+`;
+
+export const ButtonControl = styled.div`
+  width: 90%;
+  max-width: 550px;
+  margin: 20px;
 `;
 
 export const ContainerWeather = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  width: 100%;
+  margin-bottom: 30px;
 `;
 
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  width: 100%;
-  max-width: 550px;
+  gap: 24px;
+  flex-wrap: wrap;
   padding: 20px 26px 18px;
   border-radius: 20px;
   background: rgba(30, 55, 100, 0.55);
   backdrop-filter: blur(12px);
   color: #fff;
+  
+  @media (max-width: 500px) {
+    gap: 14px;
+    max-width: 350px;
+    padding: 30px;
+  }
 `;
 
 export const WeatherInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 export const Temp = styled.div`
@@ -102,6 +124,12 @@ export const SavedCity = styled.div`
   justify-content: center;
   align-items: center;
   gap: 70px;
+  
+  @media (max-width: 500px) {
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+  }
 `;
 
 export const ErrorText = styled.p`
@@ -120,4 +148,8 @@ export const ErrorText = styled.p`
   text-align: center;
 `;
 
-export const Info = styled.div``
+export const Info = styled.div``;
+
+export const Loading = styled.img`
+  width: 100px;
+`;

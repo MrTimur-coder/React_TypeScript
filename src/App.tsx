@@ -8,13 +8,13 @@ import WeatherAppLayout from "components/pages/WeatherApp/WeatherAppLayout/Weath
 
 // Pages
 import Home from "components/pages/EmployeeApp/Home/Home";
-import Clients from "components/pages/Clients/Clients";
+import Clients from "components/pages/EmployeeApp/Clients/Clients";
 import About from "components/pages/EmployeeApp/About/About";
 import ContactUs from "components/ContactUsForm/ContactUsForm";
 import LogIn from "components/pages/EmployeeApp/LogIn/LogIn";
-import Amazon from "components/pages/Clients/Amazon/Amazon";
-import Netflix from "components/pages/Clients/Netflix/Netflix";
-import Spotify from "components/pages/Clients/Spotify/Spotify";
+import Amazon from "components/pages/EmployeeApp/Clients/Amazon/Amazon";
+import Netflix from "components/pages/EmployeeApp/Clients/Netflix/Netflix";
+import Spotify from "components/pages/EmployeeApp/Clients/Spotify/Spotify";
 
 import UserAppLayout from "components/pages/UserApp/components/UserAppLayout/UserAppLayout";
 import CreateEmployees from "components/pages/UserApp/components/CreateEmployees/CreateEmployees";
@@ -45,7 +45,6 @@ import { SavedCityProvider } from "components/pages/WeatherApp/WeatherAppLayout/
 
 function App() {
   return (
-    // <EmployeeProvider>
     <BrowserRouter>
       <GlobalStyles />
       {/* <Layout>
@@ -62,27 +61,21 @@ function App() {
           </Routes>
         </Layout> */}
 
-      {/* <UserAppLayout>
+      {/* <EmployeeProvider>
+        <UserAppLayout>
           <Routes>
             <Route path="/" element={<CreateEmployees />} />
             <Route path="/employees" element={<Employee />} />
           </Routes>
-        </UserAppLayout> */}
+        </UserAppLayout>
+      </EmployeeProvider> */}
 
-      {/* <WeatherAppLayout>
-          <Routes>
-            <Route path={ROUTE.HOME} element={<WeatherHome />} />
-            <Route path={ROUTE.WEATHERS} element={<Weather/>} />
-          </Routes>
-        </WeatherAppLayout> */}
-      <SavedCityProvider>
-        <WeatherAppLayout>
-          <Routes>
-            <Route path={ROUTE.HOME} element={<WeatherHome />} />
-            <Route path={ROUTE.WEATHERS} element={<Weather />} />
-          </Routes>
-        </WeatherAppLayout>
-      </SavedCityProvider>
+      <WeatherAppLayout>
+        <Routes>
+          <Route path={ROUTE.HOME} element={<WeatherHome />} />
+          <Route path={ROUTE.WEATHERS} element={<Weather />} />
+        </Routes>
+      </WeatherAppLayout>
 
       {/* Homeworks */}
       {/* <Homework_07 /> */}
@@ -100,7 +93,6 @@ function App() {
       {/* <Lesson_11/> */}
       {/* <Lesson_13/> */}
     </BrowserRouter>
-    // </EmployeeProvider>
   );
 }
 export default App;

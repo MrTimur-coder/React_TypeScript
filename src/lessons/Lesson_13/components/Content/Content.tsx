@@ -7,10 +7,11 @@ import { MainContext } from "lessons/Lesson_13/components/Main/Main";
 // import Button from "components/Button/Button";
 
 import { ContentInfo, ContentTitle, ContentWrapper } from "./styles";
+import Button from "components/Button/Button";
 
 function Content() {
   // ШАГ 6: Получить доступ к данным, хранящимся в контексте
-  const { userData } = useContext(MainContext);
+  const { userData, setUserData } = useContext(MainContext);
 
   return (
     <ContentWrapper>
@@ -31,7 +32,7 @@ function Content() {
       ) : (
         <></>
       )} */}
-      {/* <Button isRed name="Delete user" /> */}
+      {!!userData && <Button isRed button_info="Delete user" onClick={()=>setUserData(undefined)}/>}
     </ContentWrapper>
   );
 }

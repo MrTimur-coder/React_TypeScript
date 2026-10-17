@@ -12,6 +12,7 @@ import { type UserData, type MainContextData } from "./types";
 
 export const MainContext = createContext<MainContextData>({
   userData: undefined,
+  setUserData: () => {}
 });
 
 function Main() {
@@ -32,7 +33,7 @@ function Main() {
 
   return (
     // ШАГ 3: Обернуть все что у нас в return, с помощью MainContext.Provider и передать пропсу value(то что мы хотим передать компоненту Content)
-    <MainContext.Provider value={{ userData: userData }}>
+    <MainContext.Provider value={{ userData: userData, setUserData: setUserData }}>
       <MainWrapper>
         <MainTitle>Main Component</MainTitle>
         <Button button_info="Get User Data" onClick={getUserData} />

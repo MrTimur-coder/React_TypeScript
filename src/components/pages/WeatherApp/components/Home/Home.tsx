@@ -10,21 +10,24 @@ import {
   WeatherIcon,
   SavedCity,
   ErrorText,
+  Loading,
 } from "./styles";
-import { useState, type ChangeEvent } from "react";
-import { useSavedCity } from "../../WeatherAppLayout/SavedCityProvider";
-
+import { useContext, useState, type ChangeEvent } from "react";
+import { SavedCityContext } from "../../WeatherAppLayout/SavedCityProvider";
+import LoadingGif from "assets/round-loading-animation-gif.webp";
 import Input from "components/Input/Input";
 import Button from "components/Button/Button";
+import { toast } from "react-toastify";
+import type { WeatherInterface } from "./types";
 
 function WeatherHome() {
   const APP_ID = "43cba59423ce2e6e2ecd59543ed9bcae";
+  
+  const { savedWeather, setSavedWeather } = useContext(SavedCityContext);
 
-  const [weather, setWeather] = useState<
-    | { city: string; description: string; temp: number; icon: string, time: string }
-    | undefined
-  >(undefined);
-  const { savedWeather, setSavedWeather } = useSavedCity();
+  const [weather, setWeather] = useState<WeatherInterface | undefined>(
+    undefined,
+  );
   const [error, setError] = useState<undefined | string>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
@@ -46,8 +49,6 @@ function WeatherHome() {
     .format(now)
     .replace(",", "");
 
-    console.log(formattedDate)
-
   const getWeather = async () => {
     const WEATHER_URL: string = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${APP_ID}&units=metric`;
 
@@ -61,7 +62,7 @@ function WeatherHome() {
         description: response.data.weather[0].description,
         temp: response.data.main.temp,
         icon: response.data.weather[0].icon,
-        time: formattedDate
+        time: formattedDate,
       });
     } catch (error: any) {
       // Тут пишем логику когда нам приходит ошибка
@@ -72,7 +73,7 @@ function WeatherHome() {
     }
   };
 
-  const saveCity = () => {
+  const saveCity = (saveWeatherCity: any) => {
     if (!weather) return;
 
     setSavedWeather((prev: any) => {
@@ -80,17 +81,17 @@ function WeatherHome() {
       if (exists) return prev;
       return [...prev, weather];
     });
-    alert(`City is saved successfully!`);
+    toast.success(
+      `Weather about ${saveWeatherCity.city} is saved successfully!`,
+    );
   };
 
-//  const updateCity = () => {
-//     getWeather();
-//   };
-
-  const deleteCity = () => {
-    setSavedWeather([]);
-    alert(
-      `City ${savedWeather[savedWeather.length - 1].city} is deleted successfully!`,
+  const deleteCity = (cityToDelete: any) => {
+    setSavedWeather(
+      savedWeather.filter((value: any) => value.city !== cityToDelete.city),
+    );
+    toast.success(
+      `Weather about ${cityToDelete.city} is deleted successfully!`,
     );
   };
 
@@ -100,7 +101,7 @@ function WeatherHome() {
         <Input
           id="search_input"
           name="search"
-          placeholder="Enter your request"
+          placeholder="Enter the city name ..."
           label="Search"
           value={search}
           onChange={onSearch}
@@ -110,13 +111,14 @@ function WeatherHome() {
           button_info="Search"
           onClick={() => {
             if (!search.trim()) {
-              alert("Search input can't be empty! Enter city name!");
+              toast.info("Search input can't be empty! Enter the city name!");
               return;
             }
             getWeather();
           }}
         />
       </SearchRow>
+      {!!isLoading && <Loading src={LoadingGif}></Loading>}
       <ContainerWeather>
         {!!weather && (
           <Card>
@@ -143,21 +145,22 @@ function WeatherHome() {
             <SavedCity>
               <Button
                 button_info="Save"
-                onClick={saveCity}
+                onClick={() => saveCity(weather)}
                 disabled={savedWeather.some(
                   (item: any) => item.city === weather.city,
                 )}
               />
               <Button
                 button_info="Delete"
-                onClick={deleteCity}
-                disabled={savedWeather.length === 0}
+                onClick={() => deleteCity(weather)}
+                disabled={
+                  !savedWeather.some((item: any) => item.city === weather?.city)
+                }
                 isRed
               />
             </SavedCity>
           </Card>
         )}
-
         {!!error && <ErrorText>API Error: {error} </ErrorText>}
       </ContainerWeather>
     </PageWrapper>

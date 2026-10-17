@@ -8,16 +8,20 @@ import {
   WeatherIcon,
   SavedCity,
   Info,
+  ButtonControl,
 } from "../Home/styles";
-import { useSavedCity } from "../../WeatherAppLayout/SavedCityProvider";
+import { SavedCityContext } from "../../WeatherAppLayout/SavedCityProvider";
 
 import Button from "components/Button/Button";
 import { v4 } from "uuid";
 
-function Weather() {
-  const { savedWeather, setSavedWeather, updateWeather } = useSavedCity();
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from "react";
 
-  console.log(savedWeather);
+function Weather() {
+  const { savedWeather, setSavedWeather, updateWeather } = useContext(SavedCityContext);
+
   const WeatherContainer = savedWeather.map((savedWeatherVal: any) => {
     return (
       <ContainerWeather key={v4()}>
@@ -48,7 +52,7 @@ function Weather() {
                 button_info="Update"
                 onClick={() => {
                   updateWeather(savedWeatherVal.city);
-                  alert(`City ${savedWeatherVal.city} is updated successfully`);
+                  toast.success(`City ${savedWeatherVal.city} is updated successfully`);
                 }}
               />
               <Button
@@ -59,7 +63,7 @@ function Weather() {
                     savedWeather.filter((weather: any) => {
                       return weather.city !== savedWeatherVal.city;
                     }),
-                    alert(
+                    toast.success(
                       `City ${savedWeatherVal.city} is deleted successfully`,
                     ),
                   )
@@ -74,16 +78,19 @@ function Weather() {
 
   return (
     <PageWrapper>
+      
       {savedWeather.length === 0 && <Text>No saved cities yet!</Text>}
       {WeatherContainer}
       {savedWeather.length > 0 && (
-        <Button
-          button_info="Remove All"
-          isRed
-          onClick={() =>
-            setSavedWeather([], alert("All cities are removed successfully!"))
-          }
-        />
+        <ButtonControl>
+          <Button
+            button_info="Remove All"
+            isRed
+            onClick={() =>
+              setSavedWeather([], toast.success("All cities are removed successfully!"))
+            }
+          />
+        </ButtonControl>
       )}
     </PageWrapper>
   );

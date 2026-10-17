@@ -1,14 +1,13 @@
 import axios from "axios";
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useState } from "react";
+import type { LayoutProps, SavedCityInterface } from "./types";
 
 // 1. Создаём «коробку»
-const SavedCityContext = createContext<any>(null);
+export const SavedCityContext = createContext<any>(null);
 
 // 2. Провайдер: хранит город и раздаёт его всем внутри
-export function SavedCityProvider({ children }: { children: ReactNode }) {
-  const [savedWeather, setSavedWeather] = useState<
-    { city: string; description: string; temp: number; icon: string }[]
-  >([]);
+export function SavedCityProvider({ children }: LayoutProps) {
+  const [savedWeather, setSavedWeather] = useState<SavedCityInterface[]>([]);
 
   const APP_ID = "43cba59423ce2e6e2ecd59543ed9bcae";
 
@@ -41,9 +40,4 @@ export function SavedCityProvider({ children }: { children: ReactNode }) {
       {children}
     </SavedCityContext.Provider>
   );
-}
-
-// 3. Короткая функция, чтобы доставать город из «коробки»
-export function useSavedCity() {
-  return useContext(SavedCityContext);
 }

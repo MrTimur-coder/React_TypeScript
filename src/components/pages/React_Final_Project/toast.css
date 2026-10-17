@@ -1,0 +1,32 @@
+.weather-toast.Toastify__toast {
+  min-height: 64px;
+  padding: 14px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+
+  background: rgba(18, 45, 77, 0.9);
+  color: white;
+
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.weather-toast.Toastify__toast--success {
+  border-left: 4px solid #52d273;
+}
+
+.weather-toast.Toastify__toast--warning {
+  border-left: 4px solid #ffbf47;
+}
+
+.weather-toast.Toastify__toast--error {
+  border-left: 4px solid #ff6363;
+}
+
+.Toastify__progress-bar {
+  background: linear-gradient(90deg, #54a8ff, #83d8ff);
+}
